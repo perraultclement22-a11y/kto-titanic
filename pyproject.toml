@@ -3,7 +3,7 @@ name = "kto-titanic"
 version = "0.1.0"
 description = "Kto Titanic Project"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "fire>=0.7.1",
     # TODO : Ajouter les dépendances transverses manquantes
