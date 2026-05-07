@@ -46,3 +46,15 @@ jobs:
         run: |
           sed -i 's|PLACEHOLDER_OAUTH2_DOMAIN|${{ vars.OAUTH2_DOMAIN }}|g' k8s/api/api.yaml
           echo "✅ OAuth2 domain configured: ${{ vars.OAUTH2_DOMAIN }}"
+      - name: Get OAuth2 token for integration test
+        run: |
+          TOKEN_RESPONSE=$(curl -s -X POST "https://${{ vars.OAUTH2_DOMAIN }}/oauth/token" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=${{ secrets.OAUTH2_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.OAUTH2_CLIENT_SECRET }}" \
+            -d "audience=titanic-api" \
+            -d "scope=api:read")
+          ACCESS_TOKEN=$(echo $TOKEN_RESPONSE | jq -r '.access_token')
+          echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> "$GITHUB_ENV"
+          echo "✅ OAuth2 token obtained for testing"
