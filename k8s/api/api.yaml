@@ -16,6 +16,8 @@ spec:
         - name: titanic-api
           image: quay.io/perrault_clement/titanic/api:latest
           env:
+            - name: JAEGER_ENDPOINT
+              value: "http://jaeger-service.perrault-clement-dev.svc.cluster.local:4318/v1/traces"
             - name: OAUTH2_DOMAIN
               value: "PLACEHOLDER_OAUTH2_DOMAIN"
             - name: OAUTH2_JWT_AUDIENCE
