@@ -20,8 +20,6 @@ on:
 
 env:
   EXPERIMENT_NAME: kto-titanic
-  EXPERIMENT_IMAGE_NAME: quay.io/perrault_clement/titanic/experiment
-  API_IMAGE_NAME: quay.io/perrault_clement/titanic/api
   API_ROUTE_NAME: titanic-api
   DAILYCLEAN_ROUTE_NAME: dailyclean
   MINIO_API_ROUTE_NAME: minio-api
@@ -44,8 +42,7 @@ jobs:
       - name: Launch unit tests
         run: |
           uv run pytest tests/training tests/api
-      - name: Build and push api image
+      - name: Configure API manifest with OAuth2 domain
         run: |
-          docker login -u="${{vars.QUAY_ROBOT_USERNAME}}" -p="${{secrets.QUAY_ROBOT_TOKEN}}" quay.io
-          docker build -f k8s/api/Dockerfile -t ${{ env.API_IMAGE_NAME }}:latest .
-          docker push ${{ env.API_IMAGE_NAME }}:latest
+          sed -i 's|PLACEHOLDER_OAUTH2_DOMAIN|${{ vars.OAUTH2_DOMAIN }}|g' k8s/api/api.yaml
+          echo "✅ OAuth2 domain configured: ${{ vars.OAUTH2_DOMAIN }}"
