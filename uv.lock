@@ -1150,18 +1150,31 @@ wheels = [
 ]
 
 [[package]]
-name = "hatchling"
-version = "1.29.0"
+name = "httpcore"
+version = "1.0.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "packaging" },
-    { name = "pathspec" },
-    { name = "pluggy" },
-    { name = "trove-classifiers" },
+    { name = "certifi" },
+    { name = "h11" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/9c/b4cfe330cd4f49cff17fd771154730555fa4123beb7f292cf0098b4e6c20/hatchling-1.29.0.tar.gz", hash = "sha256:793c31816d952cee405b83488ce001c719f325d9cda69f1fc4cd750527640ea6", size = 55656, upload-time = "2026-02-23T19:42:06.539Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/06/94/82699a10bca87a5556c9c59b5963f2d039dbd239f25bc2a63907a05a14cb/httpcore-1.0.9.tar.gz", hash = "sha256:6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8", size = 85484, upload-time = "2025-04-24T22:06:22.219Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d3/8a/44032265776062a89171285ede55a0bdaadc8ac00f27f0512a71a9e3e1c8/hatchling-1.29.0-py3-none-any.whl", hash = "sha256:50af9343281f34785fab12da82e445ed987a6efb34fd8c2fc0f6e6630dbcc1b0", size = 76356, upload-time = "2026-02-23T19:42:05.197Z" },
+    { url = "https://files.pythonhosted.org/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl", hash = "sha256:2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55", size = 78784, upload-time = "2025-04-24T22:06:20.566Z" },
+]
+
+[[package]]
+name = "httpx"
+version = "0.28.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "certifi" },
+    { name = "httpcore" },
+    { name = "idna" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406, upload-time = "2024-12-06T15:37:23.222Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517, upload-time = "2024-12-06T15:37:21.509Z" },
 ]
 
 [[package]]
@@ -1416,8 +1429,13 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
+api = [
+    { name = "fastapi" },
+    { name = "pyjwt", extra = ["crypto"] },
+    { name = "uvicorn" },
+]
 dev = [
-    { name = "hatchling" },
+    { name = "httpx" },
     { name = "pytest" },
 ]
 training = [
@@ -1434,13 +1452,18 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+api = [
+    { name = "fastapi", specifier = ">=0.119.0" },
+    { name = "pyjwt", extras = ["crypto"], specifier = ">=2.8.0" },
+    { name = "uvicorn", specifier = ">=0.37.0" },
+]
 dev = [
-    { name = "hatchling", specifier = ">=1.29.0" },
+    { name = "httpx", specifier = ">=0.27.0" },
     { name = "pytest", specifier = ">=7.0.0" },
 ]
 training = [
     { name = "mlflow", extras = ["extras"], specifier = "==3.8.1" },
-    { name = "setuptools", specifier = ">=82.0.1" },
+    { name = "setuptools", specifier = ">=69.0.0" },
 ]
 
 [[package]]
@@ -2869,15 +2892,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b7/4d/08c89e34946fce2aec4fbb45c9016efd5f4d7f24af8e5d93296e935631d8/threadpoolctl-3.6.0.tar.gz", hash = "sha256:8ab8b4aa3491d812b623328249fab5302a68d2d71745c8a4c719a2fcaba9f44e", size = 21274, upload-time = "2025-03-13T13:49:23.031Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/32/d5/f9a850d79b0851d1d4ef6456097579a9005b31fea68726a4ae5f2d82ddd9/threadpoolctl-3.6.0-py3-none-any.whl", hash = "sha256:43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb", size = 18638, upload-time = "2025-03-13T13:49:21.846Z" },
-]
-
-[[package]]
-name = "trove-classifiers"
-version = "2026.4.28.13"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/04/af/88fdebf242bc7bc4957c96c5358a2b2b0f07e5001401906783a521ea9f54/trove_classifiers-2026.4.28.13.tar.gz", hash = "sha256:c85bb8a53c3de7330d1699b844ed9fb809a602a09ac15dc79ad6d1a509be0676", size = 17035, upload-time = "2026-04-28T13:45:41.495Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d6/bb/fbdc4e57731efb86b4209ffdd2519520782bf27b3c961beac3e5c20d2b87/trove_classifiers-2026.4.28.13-py3-none-any.whl", hash = "sha256:8f4b1eb4e16296b57d612965444f87a83861cc989a0451ac97fe4265ddef03b8", size = 14216, upload-time = "2026-04-28T13:45:39.943Z" },
 ]
 
 [[package]]
